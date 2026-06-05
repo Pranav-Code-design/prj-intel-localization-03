@@ -1,0 +1,296 @@
+/* Base colors for an Intel-inspired blue and white palette */
+:root {
+  --bg-white: #f5f8fc;
+  --surface-white: #ffffff;
+  --text-dark: #12243d;
+  --text-soft: #4b628d;
+  --blue-primary: #0071c5;
+  --blue-muted: #d9e9fb;
+  --border-soft: #dbe7f5;
+}
+
+/* Body styling gives the page a clean, calm background */
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--bg-white);
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Header section styling for the hero content */
+header {
+  padding: 18px 20px 24px;
+  background: linear-gradient(180deg, #0077d8 0%, #005ea6 100%);
+  color: #ffffff;
+}
+
+/* Center content inside the header */
+header > div {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Logo styling with a fixed maximum width */
+header img {
+  display: block;
+  margin: 0 auto 14px;
+}
+
+.header-logo {
+  width: min(100px, 45%);
+  max-width: 100px;
+  height: auto;
+}
+
+@media (max-width: 600px) {
+  .header-logo {
+    width: min(180px, 65%);
+  }
+}
+
+/* Main page title styling */
+h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+}
+
+/* Underline accent below the heading */
+header h1::after {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 4px;
+  margin: 10px auto 0;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* Paragraph text styling under the header */
+header p {
+  max-width: 720px;
+  margin: 10px auto 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+  line-height: 1.4;
+}
+
+/* Timeline section holds all event cards */
+section {
+  position: relative;
+  max-width: 100%;
+  margin: 36px auto 24px;
+  padding: 24px 20px 40px;
+  display: flex;
+  overflow-x: auto;
+  gap: 24px;
+  scroll-behavior: smooth;
+}
+
+/* Horizontal timeline line across the top */
+section::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--blue-muted);
+  border-radius: 999px;
+  z-index: -1;
+}
+
+/* Individual timeline cards have a white surface and soft border */
+section > div {
+  position: relative;
+  background-color: var(--surface-white);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 10px 30px rgba(18, 36, 61, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-width: 200px;
+  max-width: 220px;
+  flex-shrink: 0;
+}
+
+/* Card markers on the timeline line */
+section > div::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--blue-primary);
+  border: 4px solid var(--surface-white);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+/* Left-side cards */
+section > div:nth-child(odd) {
+  grid-column: unset;
+}
+section > div:nth-child(odd)::after {
+  right: unset;
+}
+
+
+
+/* Right-side cards */
+section > div:nth-child(even) {
+  grid-column: unset;
+}
+
+section > div::after {
+  top: -2px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+/* Hover state for cards to make them feel interactive */
+section > div:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 24px 48px rgba(18, 36, 61, 0.16);
+}
+
+/* Year heading styling */
+section h2 {
+  margin: 0 0 4px;
+  color: var(--blue-primary);
+  font-size: 1rem;
+}
+
+/* Event title styling */
+section h3 {
+  margin: 0 0 6px;
+  font-size: 0.9rem;
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+/* Images inside timeline cards */
+section img {
+  width: 100%;
+  height: 150px;
+  border-radius: 8px;
+  margin: 0 0 8px 0;
+  display: block;
+  transition: transform 0.3s ease;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+/* Image scales down on card hover */
+section > div:hover img {
+  transform: scale(0.95);
+}
+
+/* Paragraph text inside timeline cards */
+section p {
+  margin: 0 auto 10px;
+  color: var(--text-soft);
+  font-size: 0.75rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  line-height: 1.4;
+}
+
+/* Text becomes visible on card hover */
+section > div:hover p {
+  opacity: 1;
+  color: var(--text-dark);
+  flex-grow: 1;
+}
+
+/* Footer note at the bottom of the page */
+body > p {
+  text-align: center;
+  margin: 0 20px 40px;
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+/* Responsive design: stack cards on small screens */
+@media (max-width: 840px) {
+  section {
+    flex-direction: column;
+    overflow-x: visible;
+    max-width: 1040px;
+    margin: 36px auto 24px;
+    padding: 0 20px;
+    padding-left: 40px;
+    padding-bottom: 24px;
+    gap: 20px;
+  }
+
+  /* Vertical timeline line on small screens */
+  section::before {
+    position: absolute;
+    top: 0;
+    left: 24px;
+    right: auto;
+    width: 4px;
+    height: 100%;
+  }
+
+  section > div {
+    padding: 20px;
+    min-width: unset;
+    flex-shrink: 1;
+  }
+
+  /* Card markers on the left for vertical layout */
+  section > div::after {
+    top: 20px;
+    left: -10px;
+    transform: translateX(0);
+  }
+
+  section > div:nth-child(odd),
+  section > div:nth-child(even) {
+    grid-column: unset;
+  }
+
+  section > div:nth-child(odd)::after,
+  section > div:nth-child(even)::after {
+    left: -10px;
+    right: auto;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  section {
+    padding-left: 30px;
+    gap: 16px;
+  }
+
+  section > div {
+    padding: 16px;
+  }
+
+  section img {
+    margin: 0 0 10px 0;
+  }
+
+  section::before {
+    left: 16px;
+  }
+
+  section > div::after {
+    left: -6px;
+  }
+}
+
