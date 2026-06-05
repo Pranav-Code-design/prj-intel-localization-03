@@ -293,4 +293,13 @@ body > p {
     left: -6px;
   }
 }
+.mb-3 {
+  max-width: 40vw;
+  justify-content: center;
+}
+.subscription-section {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
 
